@@ -1,5 +1,14 @@
 # Glow Windows (Aurorae)
 
-Aurorae decoration work lives here. The goal is a thin, restrained luminous active-window outline and a subdued inactive state.
+The first implementation target is the **Glow Material** KWin window decoration.
 
-This is a development scaffold. Add a valid Aurorae package only after confirming metadata and SVG requirements for the target Plasma 6/KWin version. Test titlebar controls, scaling, active/inactive states, and Wayland behavior.
+- Package directory: `glow-material/`
+- Plugin ID and folder name: `glow-material`
+- Initial version: `0.1.0`
+- Target: KDE Plasma 6 / KWin with Aurorae support
+
+The theme uses a dark charcoal titlebar, a thin emerald active frame, and a neutral inactive frame. Button hover feedback is represented by a restrained filled accent circle (the close button uses a conventional muted red hover state).
+
+This is an initial SVG-based prototype. It has not yet been tested in a live Plasma session. Please report the exact Plasma/KWin version and session type when testing.
+
+See [the theme package README](glow-material/README.md) for installation and testing.

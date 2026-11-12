@@ -7,16 +7,17 @@ Items are complete only when implemented, installed, and tested on a documented 
 - [x] Establish repository structure and project metadata.
 - [x] Define design principles, colors, and motion roles.
 - [x] Add contribution, security, and licensing documents.
-- [ ] Validate package metadata against a real Plasma 6 installation.
-- [ ] Create first visual prototype and screenshots.
+- [x] Create initial Aurorae SVG package scaffold.
+- [ ] Validate Aurorae metadata and SVG rendering in a live Plasma 6 session.
+- [ ] Capture first visual prototype screenshots.
 
 ## 0.2 — Plasma and window prototype
 
+- [ ] Refine active/inactive window frame after live testing.
+- [ ] Verify titlebar controls, scaling, maximized and tiled windows.
 - [ ] Implement Plasma desktop theme assets.
-- [ ] Implement Aurorae window decoration prototype.
-- [ ] Verify active/inactive states and titlebar controls.
 - [ ] Test panels, popups, tooltips, and widgets.
-- [ ] Document installation and removal.
+- [ ] Document installation and removal for all components.
 
 ## 0.3 — Interaction polish
 
