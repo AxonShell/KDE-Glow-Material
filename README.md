@@ -8,18 +8,24 @@ Its defining idea is ambient illumination: controls blend into their surfaces at
 
 ## Project status
 
-This commit establishes the project structure, design foundations, documentation, and packaging direction. It is an early development scaffold, not a finished or fully installable theme. Individual components will be marked as experimental or implemented as they become usable.
+This repository contains the design foundation and the first Aurorae window-decoration prototype. The decoration is an early implementation and has not yet been validated in a live Plasma session. Do not treat the project as a finished desktop theme.
 
-## Planned components
+## Components
 
 | Component | Responsibility | Status |
 | --- | --- | --- |
 | Glow Core | Shared design tokens, color roles, glow and motion specifications | Foundation |
+| Glow Windows | Aurorae window decoration | Prototype 0.1.0; runtime testing needed |
 | Glow Plasma | Plasma panels, widgets, popups, and tooltips | Scaffold |
-| Glow Windows | Aurorae window decoration | Scaffold |
 | Glow Effects | Optional KWin effects and interaction feedback | Planned |
 | Glow Controls | Native Qt application styling | Planned |
 | MuliOS integration | Defaults, packaging, and installer integration | Planned |
+
+## First prototype: Glow Windows
+
+The first Aurorae package is in [aurorae/glow-material](aurorae/glow-material/). It provides a charcoal titlebar, a thin emerald active-window outline, a neutral inactive outline, and window-control button states.
+
+See the [installation and test instructions](aurorae/glow-material/README.md). Please test in a separate Plasma session or a reversible user-level installation before making it a system default.
 
 ## Design direction
 
@@ -36,7 +42,7 @@ docs/         Design and development documentation
 packaging/    MuliOS packaging and integration
 plasma/       Plasma desktop theme
 qt/           Qt style integration
-scripts/      Developer utilities
+scripts/      Developer utilities and validation
 kwin/         Optional KWin effects
 ```
 
@@ -46,12 +52,19 @@ Initial target: KDE Plasma 6 and Qt 6. Minimum supported versions must be docume
 
 Useful references:
 - https://develop.kde.org/docs/plasma/
-- https://develop.kde.org/docs/plasma/theme/
+- https://develop.kde.org/docs/plasma/aurorae/
 - https://develop.kde.org/
 
 ## Validation
 
-Run `./scripts/check-structure.sh`. This checks repository metadata and structure only; it does not validate a theme in a live Plasma session.
+Run:
+
+```sh
+sh scripts/check-structure.sh
+python3 scripts/check-aurorae.py
+```
+
+These checks validate repository structure, Aurorae metadata, and SVG structure. They do not replace testing in a live Plasma session.
 
 ## MuliOS relationship
 

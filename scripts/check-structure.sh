@@ -6,7 +6,7 @@ fail() {
     exit 1
 }
 
-for file in README.md LICENSE CONTRIBUTING.md SECURITY.md docs/DESIGN.md docs/COLORS.md docs/ROADMAP.md docs/ARCHITECTURE.md plasma/README.md aurorae/README.md kwin/README.md qt/README.md; do
+for file in README.md LICENSE CONTRIBUTING.md SECURITY.md docs/DESIGN.md docs/COLORS.md docs/ROADMAP.md docs/ARCHITECTURE.md plasma/README.md aurorae/README.md aurorae/glow-material/metadata.desktop aurorae/glow-material/glow-materialrc aurorae/glow-material/decoration.svg kwin/README.md qt/README.md; do
     [ -f "$file" ] || fail "Missing required file: $file"
 done
 
@@ -15,4 +15,4 @@ for dir in assets packaging scripts; do
 done
 
 printf 'Glow Material repository structure: OK\n'
-printf 'Note: this does not validate Plasma packages or runtime behavior.\n'
+printf 'Note: this check does not validate KWin runtime behavior.\n'

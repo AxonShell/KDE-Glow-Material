@@ -13,7 +13,7 @@ def require(condition, message):
     if not condition:
         errors.append(message)
 
-for name in ("metadata.desktop", "GlowMaterialrc", "decoration.svg",
+for name in ("metadata.desktop", "glow-materialrc", "decoration.svg",
              "close.svg", "minimize.svg", "maximize.svg", "restore.svg"):
     require((THEME / name).is_file(), f"Missing Aurorae file: {name}")
 
@@ -47,12 +47,12 @@ for svg_path in THEME.glob("*.svg"):
     except ET.ParseError as exc:
         errors.append(f"Invalid XML in {svg_path.name}: {exc}")
 
-rc_path = THEME / "GlowMaterialrc"
+rc_path = THEME / "glow-materialrc"
 if rc_path.exists():
     rc = configparser.ConfigParser(interpolation=None, strict=False)
     rc.read(rc_path, encoding="utf-8")
-    require(rc.has_section("General"), "GlowMaterialrc needs [General]")
-    require(rc.has_section("Layout"), "GlowMaterialrc needs [Layout]")
+    require(rc.has_section("General"), "glow-materialrc needs [General]")
+    require(rc.has_section("Layout"), "glow-materialrc needs [Layout]")
     if rc.has_section("General"):
         require(rc.get("General", "RightButtons", fallback="") == "IAX",
                 "Expected minimize/maximize/close button order IAX")
