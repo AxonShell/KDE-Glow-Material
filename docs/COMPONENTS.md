@@ -4,11 +4,13 @@ This document describes intended behavior; it does not imply that every componen
 
 ## Buttons
 
-Quiet surface at rest; soft accent illumination on hover; persistent visible keyboard focus; brief pressed feedback; no glow when disabled.
+Circular hit-area artwork with a quiet emerald outline at rest. Hover and keyboard focus use layered accent rings; pressed state brightens the inner disc and outer halo. The close control uses a red danger accent. Disabled controls remain legible without glow. Focus must remain visible without relying on color alone.
 
 ## Window decorations
 
-Thin active outline using the selected accent; subdued or neutral inactive outline; recognizable titlebar controls and usable hit targets. Avoid thick neon frames and large exterior bloom.
+Rounded corners on all four sides, including the lower corners. Active windows use a layered emerald edge with a visible but controlled halo; inactive windows retain the same rounded silhouette with a subdued neutral outline. Titlebar controls are circular and share the button glow language. Maximized-window geometry must avoid gaps at screen edges.
+
+The Aurorae SVG glow is composed of translucent vector strokes instead of SVG filter blur, improving compatibility with Qt SVG renderers. This creates a luminous edge treatment inside the decoration artwork; it is not a compositor-level bloom or a guarantee that application content is clipped to rounded corners. True content clipping requires KWin compositor support and must be tested separately.
 
 ## Panels and taskbars
 

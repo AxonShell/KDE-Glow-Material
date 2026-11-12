@@ -37,6 +37,10 @@ for svg_path in THEME.glob("*.svg"):
                              "topright", "bottomleft", "bottomright", "center"):
                     require(f"{state}-{part}" in ids,
                             f"{svg_path.name}: missing SVG element ID {state}-{part}")
+            source = svg_path.read_text(encoding="utf-8")
+            require("A14 14" in source, "Window corners must use rounded 14px arcs")
+            require('stroke-width="9"' in source and 'opacity=".10"' in source,
+                    "Active frame should include a layered outer glow stroke")
         else:
             require("active-center" in ids,
                     f"{svg_path.name}: missing active-center button element")
@@ -44,6 +48,9 @@ for svg_path in THEME.glob("*.svg"):
                           "pressed-inactive", "deactivated", "deactivated-inactive"):
                 require(f"{state}-center" in ids,
                         f"{svg_path.name}: missing {state}-center button element")
+            source = svg_path.read_text(encoding="utf-8")
+            require('r="10"' in source, f"{svg_path.name}: expected circular button body")
+            require('r="16"' in source, f"{svg_path.name}: expected outer hover glow ring")
     except ET.ParseError as exc:
         errors.append(f"Invalid XML in {svg_path.name}: {exc}")
 
@@ -56,14 +63,20 @@ if rc_path.exists():
     if rc.has_section("General"):
         require(rc.get("General", "RightButtons", fallback="") == "IAX",
                 "Expected minimize/maximize/close button order IAX")
+        require(rc.getboolean("General", "HaloActive", fallback=False),
+                "Active halo should be enabled")
     if rc.has_section("Layout"):
         require(rc.getint("Layout", "TitleHeight", fallback=0) > 0,
                 "TitleHeight must be positive")
+        require(rc.getint("Layout", "BorderLeft", fallback=0) >= 8,
+                "Rounded glow frame needs room for its left edge treatment")
+        require(rc.getint("Layout", "ButtonWidth", fallback=0) >= 28,
+                "Circular titlebar buttons need a usable width")
 
 if errors:
     for error in errors:
         print(f"FAIL: {error}", file=sys.stderr)
     sys.exit(1)
 
-print("Glow Material Aurorae package: static checks passed.")
+print("Glow Material rounded/glow Aurorae package: static checks passed.")
 print("This does not replace testing in a live KDE Plasma session.")
